@@ -16,7 +16,7 @@ def main(printData):
         print(winedf)
     
     x_train, x_test, y_train, y_test = train_test_split(wine.data, wine.target, test_size=0.2)
-    model = LinearRegression(max_iter=10000)
+    model = LinearRegression()
     model.fit(x_train, y_train)
     
     # Predict on the test data
@@ -25,6 +25,7 @@ def main(printData):
     
     if printData:
         print(f'Accuracy: {accuracy_score(y_test, predictions)}')
+    return predictions.tolist()
 
 if __name__ == "__main__":
     main(True)

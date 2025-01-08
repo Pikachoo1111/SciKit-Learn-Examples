@@ -19,6 +19,7 @@ def main(printData):
     model.fit(x_train, y_train)
     predictions = model.predict(x_test)
     print(predictions)
+    return predictions.tolist()
 
 if __name__ == "__main__":
     main(True)

@@ -21,6 +21,7 @@ def main(printData):
     print(predictions)
     if(printData):
         print(accuracy_score(y_test, predictions))
+    return predictions.tolist()
 
 if __name__ == "__main__":
     main(True)
