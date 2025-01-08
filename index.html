@@ -15,13 +15,22 @@
             margin: 10px;
             font-size: 16px;
         }
+        #results {
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
     <h1>SciKit-Learn Models</h1>
     
     <h2>This site uses a Flask backend (powered with python) to allow users to try out four different machine learning model architectures, all powered by SciKit-Learn. </h2>
-    <h2>The dataset being used is "The wine dataset", which is included in the SciKit Learn dataset package./h2>
+    <h2>The dataset being used is "The wine dataset", which is included in the SciKit Learn dataset package</h2>
     <button onclick="getModelResults('KNN')">Get KNN Results</button>
     <button onclick="getModelResults('LinearRegression')">Get Linear Regression Results</button>
     <button onclick="getModelResults('SVM')">Get SVM Results</button>
@@ -34,7 +43,9 @@
             fetch(`http://127.0.0.1:5000/getResults?model=${model}`) // Ensure 'getResults' is spelled correctly
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('results').innerText = JSON.stringify(data, null, 2);
+                    // document.getElementById('results').innerText = JSON.stringify(data, null, 2);
+                    var cleanedText = JSON.stringify(data, null, 2).replace(/(\r\n|\n|\r)/gm, "");
+                    document.getElementById('results').innerText = cleanedText;
                 })
                 .catch(error => {
                     document.getElementById('results').innerText = 'Error fetching model results' + error;
